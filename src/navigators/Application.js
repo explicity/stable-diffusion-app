@@ -1,5 +1,5 @@
 import React from 'react';
-import { StatusBar } from 'react-native';
+import { SafeAreaView, StatusBar } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {
   NavigationContainer,
@@ -21,11 +21,13 @@ const ApplicationNavigator = () => {
 
   return (
     <NavigationContainer theme={NavigationTheme} ref={navigationRef}>
-      <StatusBar barStyle={darkMode ? 'light-content' : 'dark-content'} />
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name='Startup' component={Startup} />
-        <Stack.Screen name='Main' component={MainNavigator} />
-      </Stack.Navigator>
+      <SafeAreaView style={{ flex: 1 }}>
+        <StatusBar barStyle={darkMode ? 'light-content' : 'dark-content'} />
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name='Startup' component={Startup} />
+          <Stack.Screen name='Main' component={MainNavigator} />
+        </Stack.Navigator>
+      </SafeAreaView>
     </NavigationContainer>
   );
 };
