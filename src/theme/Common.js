@@ -5,11 +5,8 @@
  */
 import { StyleSheet } from 'react-native';
 
-import buttonStyles from './components/Buttons';
-
 export default function ({ Colors, ...args }) {
   return {
-    button: buttonStyles({ Colors, ...args }),
     ...StyleSheet.create({
       backgroundPrimary: {
         backgroundColor: Colors.primary,
