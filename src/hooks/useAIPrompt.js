@@ -1,35 +1,48 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { openai } from '../App';
 
+const IMAGE_SIZE = '256x256';
+
+const Engines = {
+  DA_VINCI: 'text-davinci-003',
+  CONTENT_FILTER: 'content-filter-alpha',
+};
+
+const CompetionOptions = {
+  max_tokens: 256,
+  temperature: 0.7,
+  top_p: 1,
+  n: 1,
+  echo: false,
+  stream: false,
+  logprobs: null,
+};
+
 export default function useAIPrompt() {
-  const generateImage = async (userPrompt) => {
+  const generateImage = useCallback(async (userPrompt) => {
     const generatePrompt = await openai.createCompletion({
-      model: 'text-davinci-003',
+      model: Engines.DA_VINCI,
       prompt: `I have a website for ${userPrompt}, and I want to generate a logo for it, can you generate a prompt for dall-e for me? make it long like 50 words, you don't need to tell me why you generated the prompt`,
-      max_tokens: 256,
-      temperature: 0.7,
-      top_p: 1,
-      n: 1,
-      echo: false,
-      stream: false,
-      logprobs: null,
+      ...CompetionOptions,
     });
 
-    if (!!generatePrompt?.data?.choices?.length) {
+    const { data: { choices = [] } = {} } = generatePrompt;
+
+    if (!!choices.length) {
       const imageParameters = {
-        prompt: generatePrompt?.data?.choices[0]?.text,
+        prompt: choices[0]?.text,
         n: 1,
-        size: '256x256',
+        size: IMAGE_SIZE,
       };
+
       const response = await openai.createImage(imageParameters);
-      const urlData = response.data.data[0].url;
 
-      console.log(urlData);
-
-      return urlData;
+      return response.data.data[0].url;
     }
-  };
+
+    return null;
+  }, []);
 
   return useMemo(() => ({ generateImage }), [generateImage]);
 }
