@@ -1,0 +1,102 @@
+# OSX
+#
+.DS_Store
+
+# Xcode
+#
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+ios/.xcode.env.local
+# project.xcworkspace
+# xcshareddata/
+IDEWorkspaceChecks.plist
+
+# Android/IntelliJ/VSCode
+#
+build/
+.idea
+.gradle
+local.properties
+.cxx/
+*.iml
+*.hprof
+android/**/.classpath
+android/**/.project
+android/**/keystore.jks
+android/**/org.eclipse.*
+#android/app/src/main/res/drawable-*
+#android/app/src/main/res/mipmap-*
+.history/
+*.code-workspace
+*.hprof
+report.xml
+
+# node.js
+#
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# BUCK
+buck-out/
+\.buckd/
+*.keystore
+
+# fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://docs.fastlane.tools/best-practices/source-control/
+
+**/fastlane/report.xml
+**/fastlane/Preview.html
+**/fastlane/screenshots
+**/fastlane/test_output
+ios/fastlane/report.xml
+ios/fastlane/Preview.html
+ios/fastlane/screenshots
+ios/*.dSYM.zip
+Pods/
+/ios/Pods/
+# Ruby / CocoaPods
+/vendor/bundle/
+
+package-lock.json
+# src/config.js
+android/fastlane/report.xml
+android/fastlane/Preview.html
+android/fastlane/screenshots
+
+# Ignore GoogleService-Info.plist becuse it's overridden after each build depending on environment 
+ios/homer-shareExtension/GoogleService-Info.plist
+
+# Misc
+.env
+.env.production
+.env.development
+.env.staging
+*.code-workspace
+e2e/scripts/report.json
+
+# Ignore Realm files 
+*.realm
+*.realm.lock
+*.management/
+
+# Jest
+coverage/
