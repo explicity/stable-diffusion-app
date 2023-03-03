@@ -100,3 +100,5 @@ e2e/scripts/report.json
 
 # Jest
 coverage/
+
+.vscode
