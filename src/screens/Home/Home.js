@@ -6,15 +6,10 @@ import { useTranslation } from 'react-i18next';
 import TopHeader from '../../components/common/TopHeader';
 import RoundedButton from '../../components/common/buttons/RoundedButton';
 
-// import { changeTheme } from '../../store/theme';
-
 const Home = ({ navigation }) => {
   const { t } = useTranslation('example');
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  // const onChangeTheme = ({ theme, darkMode }) => {
-  //   dispatch(changeTheme({ theme, darkMode }));
-  // };
 
   return (
     <View style={{ flex: 1 }}>

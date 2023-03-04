@@ -2,7 +2,7 @@ import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 // import { StatusBar, Dimensions, PixelRatio, Platform } from 'react-native';
 // import DeviceInfo from 'react-native-device-info';
 
-import { isIOS } from '../services/envHelper';
+import { isIOS, elongatedScreen } from '../services/envHelper';
 
 const androidSmallPadding = wp(elongatedScreen ? '2.4%' : '1.9%');
 

@@ -5,6 +5,9 @@ import SuperEllipseMask from 'react-native-super-ellipse-mask';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
+import { isIOS } from '../../../services/envHelper';
+import { Padding, Color } from '../../../theme';
+
 const ANIMATION_DURATION = 200;
 
 const PAGINATION_HEIGHT = 4;
@@ -24,7 +27,7 @@ const styles = StyleSheet.create({
   },
   paginationItemContainer: {
     borderRadius: PAGINATION_HEIGHT / 3,
-    // marginHorizontal: Padding.TINY,
+    marginHorizontal: Padding.TINY,
     overflow: 'hidden',
   },
 });
@@ -45,18 +48,17 @@ const StepPaginationDot = ({ active, width }) => {
   const animatedStyle = {
     backgroundColor: color.interpolate({
       inputRange: [0, 1],
-      // outputRange: [Color.INDICATOR_BRIGHT, Color.INDICATOR_DARK],
-      outputRange: ['black', 'grey']
+      outputRange: [Color.INDICATOR_BRIGHT, Color.INDICATOR_DARK],
+      outputRange: ['black', 'grey'],
     }),
   };
 
-  // const ViewComponent = isIOS ? SuperEllipseMask : View;
-  const ViewComponent = SuperEllipseMask;
+  const ViewComponent = isIOS ? SuperEllipseMask : View;
 
   return (
     <ViewComponent
       style={[styles.paginationItem, styles.paginationItemContainer, { width }]}
-      // {...(isIOS && { radius: styles.paginationItemContainer.borderRadius })}
+      {...(isIOS && { radius: styles.paginationItemContainer.borderRadius })}
       radius={styles.paginationItemContainer.borderRadius}
     >
       <Animated.View

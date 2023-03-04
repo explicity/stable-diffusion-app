@@ -291,7 +291,7 @@ const fontStyle = {
     }),
     fontSize: 10,
     lineHeight: 12,
-  }
+  },
   MINICARD_SUBTITLE: {
     ...Platform.select({
       ios: {
