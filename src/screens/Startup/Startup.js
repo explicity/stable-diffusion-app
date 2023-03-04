@@ -2,11 +2,9 @@ import React, { useEffect } from 'react';
 import { ActivityIndicator, View, Text } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
-import { useTheme } from '../../hooks';
 import { setDefaultTheme } from '../../store/theme';
 
 const Startup = ({ navigation }) => {
-  const { Layout, Gutters, Fonts } = useTheme();
   const { t } = useTranslation();
 
   const init = async () => {
@@ -29,9 +27,9 @@ const Startup = ({ navigation }) => {
   }, []);
 
   return (
-    <View style={[Layout.fill, Layout.colCenter]}>
-      <ActivityIndicator size={'large'} style={[Gutters.largeVMargin]} />
-      <Text style={Fonts.textCenter}>{t('welcome:title')}</Text>
+    <View style={{ flex: 1 }}>
+      <ActivityIndicator size={'large'} />
+      <Text>{t('welcome:title')}</Text>
     </View>
   );
 };
