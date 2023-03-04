@@ -2,10 +2,13 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import SuperEllipseMask from 'react-native-super-ellipse-mask';
+import LottieView from 'lottie-react-native';
 import isFunction from 'lodash/isFunction';
 
 import { isIOS } from '../../services/envHelper';
 import { FontStyle, Color, Padding, TOP_BAR_HEIGHT } from '../../theme';
+
+const DONE_ANIMATION = require('../../theme/assets/animations/done.json');
 
 export const RichHeaderSize = {
   SMALL: 'small',
@@ -49,7 +52,7 @@ const styles = StyleSheet.create({
     height: RichIconSize[RichHeaderSize.SMALL] * 2.5,
   },
   [`${RichHeaderSize.LARGE}DoneAnimation`]: {
-    top: -RichIconSize[RichHeaderSize.LARGE] * 0.75,
+    top: -RichIconSize[RichHeaderSize.LARGE] * 0.15,
     height: RichIconSize[RichHeaderSize.LARGE] * 2.5,
   },
   textContainer: {
@@ -123,7 +126,7 @@ const RichHeader = ({
           <LottieView
             autoPlay
             loop={false}
-            // source={DONE_ANIMATION}
+            source={DONE_ANIMATION}
             speed={1.5}
           />
         </View>

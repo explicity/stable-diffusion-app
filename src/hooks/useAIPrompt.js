@@ -38,6 +38,8 @@ export default function useAIPrompt() {
 
       const response = await openai.createImage(imageParameters);
 
+      console.log('response.data.data[0].url', response.data.data[0].url);
+
       return response.data.data[0].url;
     }
 

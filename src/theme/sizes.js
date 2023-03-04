@@ -18,3 +18,5 @@ export const TOP_BAR_HEIGHT = Platform.select({
   ios: DeviceInfo.hasNotch() ? 44 : 20,
   android: StatusBar.currentHeight,
 });
+
+export const MODAL_ANIMATION_DURATION = 150;

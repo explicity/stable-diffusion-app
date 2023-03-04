@@ -5,13 +5,13 @@ import SuperEllipseMask from 'react-native-super-ellipse-mask';
 import { isIOS } from '../../../services/envHelper';
 import { FontStyle, Color } from '../../../theme';
 
-export const RoundedButtonSizes = {
+export const RoundedButtonSize = {
   SMALL: 'small',
   MEDIUM: 'medium',
   LARGE: 'large',
 };
 
-export const RoundedButtonHeights = {
+export const RoundedButtonHeight = {
   SMALL: 24,
   MEDIUM: 36,
   LARGE: 48,
@@ -30,36 +30,36 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
   },
-  [RoundedButtonSizes.SMALL]: {
-    height: RoundedButtonHeights.SMALL,
+  [RoundedButtonSize.SMALL]: {
+    height: RoundedButtonHeight.SMALL,
     borderRadius: 8,
     borderWidth: 1.5,
     paddingLeft: 12,
     paddingRight: 12,
   },
-  [RoundedButtonSizes.MEDIUM]: {
-    height: RoundedButtonHeights.MEDIUM,
+  [RoundedButtonSize.MEDIUM]: {
+    height: RoundedButtonHeight.MEDIUM,
     borderRadius: 12,
     borderWidth: 2,
     paddingLeft: 16,
     paddingRight: 16,
   },
-  [RoundedButtonSizes.LARGE]: {
-    height: RoundedButtonHeights.LARGE,
+  [RoundedButtonSize.LARGE]: {
+    height: RoundedButtonHeight.LARGE,
     borderRadius: 16,
     borderWidth: 3,
     paddingLeft: 20,
     paddingRight: 20,
   },
-  [`${RoundedButtonSizes.SMALL}Text`]: {
+  [`${RoundedButtonSize.SMALL}Text`]: {
     ...FontStyle.TITLE_MICRO,
   },
 
-  [`${RoundedButtonSizes.MEDIUM}Text`]: {
+  [`${RoundedButtonSize.MEDIUM}Text`]: {
     ...FontStyle.TITLE_TINY,
   },
 
-  [`${RoundedButtonSizes.LARGE}Text`]: {
+  [`${RoundedButtonSize.LARGE}Text`]: {
     ...FontStyle.TITLE_SMALL,
   },
   [`button-${ButtonColors.BLUE}`]: {
@@ -79,15 +79,16 @@ const styles = StyleSheet.create({
 });
 
 const RoundedButton = ({
+  containerStyle,
   buttonColor = ButtonColors.BLUE,
-  size = RoundedButtonSizes.MEDIUM,
+  size = RoundedButtonSize.MEDIUM,
   title,
   onPress,
 }) => {
   const ViewComponent = isIOS ? SuperEllipseMask : View;
 
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress} style={containerStyle}>
       <ViewComponent
         style={[
           styles.center,

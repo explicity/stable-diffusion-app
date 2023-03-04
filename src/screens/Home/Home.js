@@ -5,10 +5,11 @@ import { useTranslation } from 'react-i18next';
 
 import TopHeader from '../../components/common/TopHeader';
 import RoundedButton, {
-  RoundedButtonSizes,
+  RoundedButtonSize,
 } from '../../components/common/buttons/RoundedButton';
 
 import { Color, Padding } from '../../theme';
+import { Flows } from '../../components/common/steps/constants';
 
 const styles = StyleSheet.create({
   flex: {
@@ -42,8 +43,10 @@ const Home = ({ navigation }) => {
       <View style={[styles.absolute, styles.center, styles.bottomContainer]}>
         <RoundedButton
           title='Generate new image!'
-          onPress={() => navigation.push('Flows')}
-          size={RoundedButtonSizes.LARGE}
+          onPress={() =>
+            navigation.push('Flows', { id: Flows.IMAGE_GENERATION })
+          }
+          size={RoundedButtonSize.LARGE}
         />
       </View>
     </View>

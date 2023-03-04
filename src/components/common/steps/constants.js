@@ -1,9 +1,11 @@
+import { AppIcons } from '../../../services/assetsHelper';
+
 export const Flows = {
   IMAGE_GENERATION: 'ImageGeneration',
 };
 
 export const FlowIcons = {
-  [Flows.IMAGE_GENERATION]: '',
+  [Flows.IMAGE_GENERATION]: AppIcons.IMAGES.free,
 };
 
 export const FlowSteps = {
