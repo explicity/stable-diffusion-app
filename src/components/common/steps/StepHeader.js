@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet } from 'react-native';
 
 import StepPagination from './StepPagination';
-import RichHeader from '../RichHeader';
+import RichHeader, { RichHeaderSize } from '../RichHeader';
 import FadeableView from '../FadeableView';
 
 const ANIMATION_DURATION = 500;
@@ -27,7 +27,7 @@ const StepHeader = ({
     duration={ANIMATION_DURATION}
     style={[styles.container, containerStyle]}
   >
-    <RichHeader title={title} icon={icon} />
+    <RichHeader title={title} icon={icon} size={RichHeaderSize.SMALL} screen />
     <StepPagination dotsLength={dotsLength} activeDotIndex={activeDotIndex} />
   </FadeableView>
 );

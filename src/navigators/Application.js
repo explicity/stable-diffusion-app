@@ -19,13 +19,11 @@ const ApplicationNavigator = () => {
 
   return (
     <NavigationContainer ref={navigationRef}>
-      <SafeAreaView style={{ flex: 1 }}>
-        <StatusBar barStyle={'light-content'} />
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name='Startup' component={Startup} />
-          <Stack.Screen name='Main' component={MainNavigator} />
-        </Stack.Navigator>
-      </SafeAreaView>
+      <StatusBar barStyle={'light-content'} />
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name='Startup' component={Startup} />
+        <Stack.Screen name='Main' component={MainNavigator} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };

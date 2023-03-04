@@ -6,6 +6,7 @@ const ANIMATION_DURATION = 1000;
 const FadeableView = ({
   visible: defaultVisible,
   duration = ANIMATION_DURATION,
+  style,
   children,
 }) => {
   const [visible, setVisible] = useState(defaultVisible);
@@ -20,6 +21,7 @@ const FadeableView = ({
     <Animatable.View
       animation={defaultVisible ? 'fadeIn' : 'fadeOut'}
       duration={duration}
+      style={style}
     >
       {children}
     </Animatable.View>

@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { Animated, Easing, Dimensions, View, StyleSheet } from 'react-native';
 import SuperEllipseMask from 'react-native-super-ellipse-mask';
 
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
-
 import { isIOS } from '../../../services/envHelper';
 import { Padding, Color } from '../../../theme';
+
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 const ANIMATION_DURATION = 200;
 
@@ -49,7 +49,6 @@ const StepPaginationDot = ({ active, width }) => {
     backgroundColor: color.interpolate({
       inputRange: [0, 1],
       outputRange: [Color.INDICATOR_BRIGHT, Color.INDICATOR_DARK],
-      outputRange: ['black', 'grey'],
     }),
   };
 

@@ -1,6 +1,6 @@
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
-// import { StatusBar, Dimensions, PixelRatio, Platform } from 'react-native';
-// import DeviceInfo from 'react-native-device-info';
+import { StatusBar, Dimensions, PixelRatio, Platform } from 'react-native';
+import DeviceInfo from 'react-native-device-info';
 
 import { isIOS, elongatedScreen } from '../services/envHelper';
 
@@ -13,3 +13,8 @@ export const Padding = {
   MEDIUM: 12,
   BIG: 64,
 };
+
+export const TOP_BAR_HEIGHT = Platform.select({
+  ios: DeviceInfo.hasNotch() ? 44 : 20,
+  android: StatusBar.currentHeight,
+});
