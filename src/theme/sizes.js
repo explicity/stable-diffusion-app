@@ -4,6 +4,8 @@ import DeviceInfo from 'react-native-device-info';
 
 import { isIOS, elongatedScreen } from '../services/envHelper';
 
+const { width, height } = Dimensions.get('window');
+
 const androidSmallPadding = wp(elongatedScreen ? '2.4%' : '1.9%');
 
 export const Padding = {
@@ -20,3 +22,5 @@ export const TOP_BAR_HEIGHT = Platform.select({
 });
 
 export const MODAL_ANIMATION_DURATION = 150;
+
+export const TASK_DONE_ANIMATION_CONTAINER = width * 3;

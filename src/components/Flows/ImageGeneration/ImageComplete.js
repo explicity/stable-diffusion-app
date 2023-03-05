@@ -1,17 +1,21 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, memo } from 'react';
 import { Animated, View, Text, StyleSheet } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import SuperEllipseMask from 'react-native-super-ellipse-mask';
 import * as Animatable from 'react-native-animatable';
+import { useTranslation } from 'react-i18next';
+import lowerFirst from 'lodash/lowerFirst';
 
 import RichHeader from '../../common/RichHeader';
-import RoundedButton, {
-  ButtonColors,
-} from '../../common/buttons/RoundedButton';
+import RoundedButton from '../../common/buttons/RoundedButton';
 
+import { SLIDER_BUTTON_WIDTH } from '../constants';
+import { Flows } from '../../common/steps/constants';
+import { LOGO_IMAGE_SIZE } from '../../../services/constants';
 import { Padding, ShadowStyles } from '../../../theme';
 import { isIOS } from '../../../services/envHelper';
-import { SLIDER_BUTTON_WIDTH } from '../constants';
+
+const ANIMATION_DURATION = 500;
 
 const styles = StyleSheet.create({
   flex: {
@@ -27,18 +31,25 @@ const styles = StyleSheet.create({
     ...ShadowStyles.SHADOW_12,
   },
   imageContainer: {
-    borderRadius: 12,
+    borderRadius: 16,
     overflow: 'hidden',
+  },
+  image: {
+    width: LOGO_IMAGE_SIZE,
+    height: LOGO_IMAGE_SIZE,
   },
   footerContainer: {
     marginTop: Padding.MEDIUM * 4,
   },
   footerButtonContainer: {
     marginBottom: Padding.SMALL * 2,
+    width: SLIDER_BUTTON_WIDTH,
   },
 });
 
 const ImageComplete = ({ active, imageUrl, onClose, onReset }) => {
+  const { t } = useTranslation('flows');
+
   const [imageOpacity] = useState(new Animated.Value(0));
   const [footerOpacity] = useState(new Animated.Value(0));
 
@@ -46,12 +57,12 @@ const ImageComplete = ({ active, imageUrl, onClose, onReset }) => {
     Animated.sequence([
       Animated.timing(imageOpacity, {
         toValue: 1,
-        duration: 500,
+        duration: ANIMATION_DURATION,
         useNativeDriver: true,
       }),
       Animated.timing(footerOpacity, {
         toValue: 1,
-        duration: 500,
+        duration: ANIMATION_DURATION,
         useNativeDriver: true,
       }),
     ]).start();
@@ -61,7 +72,7 @@ const ImageComplete = ({ active, imageUrl, onClose, onReset }) => {
       active ? (
         <Animatable.View animation='fadeIn' useNativeDriver>
           <RichHeader
-            title='A new website logo was generated!'
+            title={t(`${lowerFirst(Flows.IMAGE_GENERATION)}.complete.title`)}
             doneAnimation
             containerStyle={styles.richHeaderContainer}
             screen
@@ -84,7 +95,7 @@ const ImageComplete = ({ active, imageUrl, onClose, onReset }) => {
           >
             <FastImage
               source={{ uri: imageUrl }}
-              style={{ width: 300, height: 300 }}
+              style={styles.image}
               onLoad={onImageLoad}
             />
           </ViewComponent>
@@ -98,12 +109,12 @@ const ImageComplete = ({ active, imageUrl, onClose, onReset }) => {
           ]}
         >
           <RoundedButton
-            title='Add new logo'
+            title={t(`${lowerFirst(Flows.IMAGE_GENERATION)}.complete.addNewLogo`)}
             containerStyle={styles.footerButtonContainer}
             onPress={onReset}
           />
           <RoundedButton
-            title='Close'
+            title={t('close')}
             containerStyle={styles.footerButtonContainer}
             onPress={onClose}
           />
@@ -113,4 +124,4 @@ const ImageComplete = ({ active, imageUrl, onClose, onReset }) => {
   );
 };
 
-export default ImageComplete;
+export default memo(ImageComplete);

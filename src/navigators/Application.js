@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView, StatusBar } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
   NavigationContainer,
   useNavigationContainerRef,
@@ -10,7 +10,7 @@ import { useFlipper } from '@react-navigation/devtools';
 import { Startup } from '../screens';
 import MainNavigator from './Main';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const ApplicationNavigator = () => {
   const navigationRef = useNavigationContainerRef();

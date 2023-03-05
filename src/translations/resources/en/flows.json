@@ -1,5 +1,19 @@
 {
+  "next": "Next",
+  "skip": "Skip",
+  "close": "Close",
   "imageGeneration": {
-    "title": "Image Generation"
+    "title": "Website Logo Generation",
+    "prompt": {
+      "title": "Website idea generator",
+      "placeholder": "Enter description"
+    },
+    "uploading": {
+      "prompt": "Generated prompt: "
+    },
+    "complete": {
+      "title": "A new website logo was generated!",
+      "addNewLogo": "Add new logo"
+    }
   }
 }

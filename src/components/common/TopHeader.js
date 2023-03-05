@@ -5,7 +5,7 @@ import { FontStyle, Color, Padding } from '../../theme';
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: Padding.MEDIUM * 2,
+    marginBottom: Padding.MEDIUM,
   },
   titleText: {
     ...FontStyle.TITLE_HUGE,

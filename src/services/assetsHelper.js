@@ -6,3 +6,11 @@ export const AppIcons = {
     dark: require('../theme/assets/icons/images_dark.png'),
   },
 };
+
+export const AppButtons = {
+  CLOSE: {
+    medium: {
+      white: require('../theme/assets/icons/close_medium_white.png'),
+    },
+  },
+};

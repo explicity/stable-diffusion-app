@@ -1,10 +1,10 @@
 import common from './common.json';
-import example from './example.json';
+import home from './home.json';
 import welcome from './welcome.json';
 import flows from './flows.json';
 export default {
   common,
-  example,
+  home,
   welcome,
   flows,
 };

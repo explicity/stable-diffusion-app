@@ -16,6 +16,7 @@ import {
   RichHeaderSize,
 } from '../../components/common/RichHeader';
 import { Padding, ShadowStyles, TOP_BAR_HEIGHT } from '../../theme';
+import { AppButtons } from '../../services/assetsHelper';
 
 const FlowComponents = {
   [Flows.IMAGE_GENERATION]: ImageGenerationContainer,
@@ -81,17 +82,21 @@ const FlowScreen = ({ route, navigation }) => {
         onPress={goBack}
         style={[styles.buttonContainer, styles.shadows, shadowStyles]}
       >
-        {/* <Image source={AppButtons.CLOSE.medium.white} style={styles.icon} /> */}
+        <Image source={AppButtons.CLOSE.medium.white} style={styles.icon} />
       </TouchableOpacity>
       {renderContent()}
     </View>
   );
 };
 
-FlowScreen.navigationOptions = ({ route }) => ({ gestureEnabled: false });
+FlowScreen.navigationOptions = () => ({ gestureEnabled: false });
 
 FlowScreen.propTypes = {
-  // navigation: PropTypes.shape(navigationShape).isRequired,
+  navigation: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+    navigate: PropTypes.func.isRequired,
+    goBack: PropTypes.func.isRequired,
+  }),
   route: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.oneOf(Object.values(Flows)).isRequired,

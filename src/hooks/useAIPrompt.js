@@ -2,7 +2,9 @@ import { useCallback, useMemo } from 'react';
 
 import { openai } from '../App';
 
-const IMAGE_SIZE = '256x256';
+import { EMPTY_STRING, LOGO_IMAGE_SIZE } from '../services/constants';
+
+const IMAGE_SIZE = `${LOGO_IMAGE_SIZE}x${LOGO_IMAGE_SIZE}`;
 
 const Engines = {
   DA_VINCI: 'text-davinci-003',
@@ -20,31 +22,45 @@ const CompetionOptions = {
 };
 
 export default function useAIPrompt() {
-  const generateImage = useCallback(async (userPrompt) => {
-    const generatePrompt = await openai.createCompletion({
-      model: Engines.DA_VINCI,
-      prompt: `I have a website for ${userPrompt}, and I want to generate a logo for it, can you generate a prompt for dall-e for me? make it long like 50 words, you don't need to tell me why you generated the prompt`,
-      ...CompetionOptions,
-    });
+  const generateImagePrompt = useCallback(async (prompt) => {
+    try {
+      const generatePrompt = await openai.createCompletion({
+        model: Engines.DA_VINCI,
+        prompt: `I have a website for ${prompt}, and I want to generate a logo for it, can you generate a prompt for dall-e for me? make it long like 50 words, you don't need to tell me why you generated the prompt`,
+        ...CompetionOptions,
+      });
 
-    const { data: { choices = [] } = {} } = generatePrompt;
+      const { data: { choices = [] } = {} } = generatePrompt;
 
-    if (!!choices.length) {
-      const imageParameters = {
-        prompt: choices[0]?.text,
-        n: 1,
-        size: IMAGE_SIZE,
-      };
-
-      const response = await openai.createImage(imageParameters);
-
-      console.log('response.data.data[0].url', response.data.data[0].url);
-
-      return response.data.data[0].url;
+      return choices[0]?.text || EMPTY_STRING;
+    } catch (error) {
+      console.log('error', error);
     }
-
-    return null;
   }, []);
 
-  return useMemo(() => ({ generateImage }), [generateImage]);
+  const generateImage = useCallback(async (prompt) => {
+    try {
+      if (!!prompt) {
+        console.log('IMAGE_SIZE', IMAGE_SIZE);
+        const response = await openai.createImage({
+          prompt,
+          n: 1,
+          size: '512x512',
+        });
+
+        console.log('response', response);
+
+        return response.data.data[0].url;
+      }
+
+      return null;
+    } catch (error) {
+      console.log('error', error);
+    }
+  }, []);
+
+  return useMemo(
+    () => ({ generateImagePrompt, generateImage }),
+    [generateImagePrompt, generateImage]
+  );
 }

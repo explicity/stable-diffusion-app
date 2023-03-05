@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import SuperEllipseMask from 'react-native-super-ellipse-mask';
 
 import { isIOS } from '../../../services/envHelper';
 import { FontStyle, Color } from '../../../theme';
+
+const ROUNDED_BUTTON_WIDTH = 256;
 
 export const RoundedButtonSize = {
   SMALL: 'small',
@@ -29,6 +31,9 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
+  },
+  container: {
+    width: ROUNDED_BUTTON_WIDTH,
   },
   [RoundedButtonSize.SMALL]: {
     height: RoundedButtonHeight.SMALL,
@@ -88,14 +93,16 @@ const RoundedButton = ({
   const ViewComponent = isIOS ? SuperEllipseMask : View;
 
   return (
-    <TouchableOpacity onPress={onPress} style={containerStyle}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={[styles.container, containerStyle]}
+    >
       <ViewComponent
         style={[
           styles.center,
           styles.row,
           styles[`button-${buttonColor}`],
           styles[size],
-          { width: 256 },
         ]}
         {...(isIOS && { radius: styles[size].borderRadius, key: title })}
       >
@@ -114,4 +121,4 @@ const RoundedButton = ({
   );
 };
 
-export default RoundedButton;
+export default memo(RoundedButton);

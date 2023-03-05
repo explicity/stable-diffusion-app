@@ -7,6 +7,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import RichHeader from '../../common/RichHeader';
 import InputField from '../../common/InputField';
@@ -61,6 +62,8 @@ const BasicInput = ({
   skippable,
   multiline,
 }) => {
+  const { t } = useTranslation('flows');
+
   const [value, setValue] = useState(null);
 
   const inputRef = useRef(null);
@@ -90,7 +93,7 @@ const BasicInput = ({
 
   const showSubmitButton = !value ? skippable : true;
 
-  const buttonTitle = value ? doneTitle || 'Next' : skipTitle || 'Skip';
+  const buttonTitle = value ? doneTitle || t('next') : skipTitle || t('skip');
 
   return (
     <View style={[styles.flex, styles.container]}>
@@ -120,7 +123,7 @@ const BasicInput = ({
               buttonColor: ButtonColors.GREY,
             })}
             title={buttonTitle}
-            touchableContainerStyle={styles.buttonContainer}
+            containerStyle={styles.buttonContainer}
             roundCorners
             onPress={handleSubmit}
           />

@@ -1,8 +1,30 @@
 import React, { useEffect } from 'react';
-import { ActivityIndicator, View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
-import { setDefaultTheme } from '../../store/theme';
+import FadeableView from '../../components/common/FadeableView';
+
+import { Color, FontStyle, Padding } from '../../theme';
+
+const ANIMATION_DURATION = 1500;
+
+const styles = StyleSheet.create({
+  flex: {
+    flex: 1,
+  },
+  center: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  container: {
+    paddingHorizontal: Padding.MEDIUM * 2,
+  },
+  titleText: {
+    ...FontStyle.TITLE_HUGE,
+    color: Color.BLACK(80),
+    textAlign: 'center',
+  },
+});
 
 const Startup = ({ navigation }) => {
   const { t } = useTranslation();
@@ -13,9 +35,6 @@ const Startup = ({ navigation }) => {
         resolve(true);
       }, 2000)
     );
-
-    await setDefaultTheme({ theme: 'default', darkMode: null });
-
     navigation.reset({
       index: 0,
       routes: [{ name: 'Main' }],
@@ -27,9 +46,10 @@ const Startup = ({ navigation }) => {
   }, []);
 
   return (
-    <View style={{ flex: 1 }}>
-      <ActivityIndicator size={'large'} />
-      <Text>{t('welcome:title')}</Text>
+    <View style={[styles.flex, styles.center]}>
+      <FadeableView visible duration={ANIMATION_DURATION} style={styles.container}>
+        <Text style={styles.titleText}>{t('welcome:title')}</Text>
+      </FadeableView>
     </View>
   );
 };
