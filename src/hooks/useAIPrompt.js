@@ -2,24 +2,12 @@ import { useCallback, useMemo } from 'react';
 
 import { openai } from '../App';
 
-import { EMPTY_STRING, LOGO_IMAGE_SIZE } from '../services/constants';
-
-const IMAGE_SIZE = `${LOGO_IMAGE_SIZE}x${LOGO_IMAGE_SIZE}`;
-
-const Engines = {
-  DA_VINCI: 'text-davinci-003',
-  CONTENT_FILTER: 'content-filter-alpha',
-};
-
-const CompetionOptions = {
-  max_tokens: 256,
-  temperature: 0.7,
-  top_p: 1,
-  n: 1,
-  echo: false,
-  stream: false,
-  logprobs: null,
-};
+import { EMPTY_STRING } from '../services/constants';
+import {
+  CompetionOptions,
+  ImageOptions,
+  Engines,
+} from '../services/requestsHelper';
 
 export default function useAIPrompt() {
   const generateImagePrompt = useCallback(async (prompt) => {
@@ -41,16 +29,12 @@ export default function useAIPrompt() {
   const generateImage = useCallback(async (prompt) => {
     try {
       if (!!prompt) {
-        console.log('IMAGE_SIZE', IMAGE_SIZE);
         const response = await openai.createImage({
           prompt,
-          n: 1,
-          size: '512x512',
+          ...ImageOptions,
         });
 
-        console.log('response', response);
-
-        return response.data.data[0].url;
+        return response.data.data[0].url || null;
       }
 
       return null;

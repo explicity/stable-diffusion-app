@@ -145,8 +145,6 @@ const StepFlatList = forwardRef(({ id, children }, ref) => {
     [currentStep]
   );
 
-    console.log(t(`${lowerFirst(id)}.title`))
-
   return (
     <View style={styles.flex}>
       <StepHeader

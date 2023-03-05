@@ -9,11 +9,26 @@
       "placeholder": "Enter description"
     },
     "uploading": {
-      "prompt": "Generated prompt: "
+      "prompt": "Generated prompt: ",
+      "model": "Model used for prompt generation: ",
+      "promptParameters": "Parameters for prompt generation: ",
+      "imageParameters": "Parameters for image generation: "
     },
     "complete": {
       "title": "A new website logo was generated!",
       "addNewLogo": "Add new logo"
+    }
+  },
+  "params": {
+    "competion": {
+      "prompt": "the prompt(s) to generate completions for, encoded as a string, array of strings, array of tokens, or array of token arrays.",
+      "max_tokens": "the maximum number of tokens to generate in the completion",
+      "temperature": "what sampling temperature to use, between 0 and 2"
+    },
+    "image": {
+      "prompt": "a text description of the desired image(s). The maximum length is 1000 characters.",
+      "n": "the number of images to generate. Must be between 1 and 10.",
+      "size": "the size of the generated images"
     }
   }
 }

@@ -64,7 +64,9 @@ const ImageGenerationContainer = ({ navigation }) => {
         key={flowKey}
         screenKey={FlowSteps[Flows.IMAGE_GENERATION].Prompt}
         title={t(`${lowerFirst(Flows.IMAGE_GENERATION)}.prompt.title`)}
-        placeholder={t(`${lowerFirst(Flows.IMAGE_GENERATION)}.prompt.placeholder`)}
+        placeholder={t(
+          `${lowerFirst(Flows.IMAGE_GENERATION)}.prompt.placeholder`
+        )}
         skippable={false}
         multiline
         onSubmit={handleSubmitPrompt}

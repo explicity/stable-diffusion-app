@@ -19,7 +19,7 @@ const ApplicationNavigator = () => {
 
   return (
     <NavigationContainer ref={navigationRef}>
-      <StatusBar barStyle={'light-content'} />
+      <StatusBar barStyle="dark-content" />
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name='Startup' component={Startup} />
         <Stack.Screen name='Main' component={MainNavigator} />
